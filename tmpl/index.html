@@ -1,0 +1,94 @@
+<div class="row">
+
+	<div class="col-md-12">
+
+		<xmp app-markdown>
+		## About
+
+		Stream Overlay - is a html-based overlay for iRacing first person streamers, that provides more expirience to their viewers.
+
+		## Install
+
+		1. Download and unzip [iRacingBrowserApps](/downloads/iRacingBrowserApps.zip)
+		2. Run `server.exe`
+		3. Install [OBS Studio](https://obsproject.com/download) (use **Full-Installer** with Browser plugin)
+
+		## Setup
+
+		1. Go to [Settings](#!/settings) page
+		2. Copy generated **Browser URL**
+		3. Add **BrowserSource** layer in OBS Studio, and paste it in **URL** field
+		4. Set **Width x Height** exactly the same as your main monitor resolution
+		5. Set **FPS** the same as your stream fps
+
+		## Twitch
+
+		### Auto-update Twitch Stream Title
+
+		Automagically update your Twitch status when connecting and disconnecting from iRacing.
+
+		1. Go to [Twitch](#!/twitch) page
+		2. Connect it with your twitch account
+		3. Stay on this page while you are streaming, to make auto-update works
+
+		## Custom CSS
+
+		Browser Plugin provide a possibilities to change where overlay parts will placed via CSS.
+
+		There is a main classes that you can change:
+		- `.standings`
+		- `.relatives`
+		- `.car` (fuel level, etc...)
+		- `.tyres`
+		- `.twitch`
+
+		Some examples:
+
+		1. To hide any part of overlay:
+		   ```css
+		   .relatives {
+		   	display: none;
+		   }
+		   ```
+		   Now you will never see `relatives` box in overlay.
+
+		2. Stick `standings` to the top of the screen:
+		   ```css
+		   .standings {
+		   	top: 0px;
+		   }
+		   ```
+		   There I say, place my `standings` with `0px` gap from the top.
+
+		   And to the bottom of the screen:
+		   ```css
+		   .standings {
+		   	top: inherit;
+		   	bottom: 0px;
+		   }
+		   ```
+		   Use `left: 20px;` to move standings horizontally
+
+		   **Never use `right` option, or your standings will jump everytime someone get offtrack**
+
+		3. Place twitch viewers/followers counter to the left bottom corner with `12px` gap:
+		   ```css
+		   .twitch > .counters {
+		   	left: 12px;
+		   	right: inherit;
+		   	bottom: 12px;
+		   }
+		   ```
+		   `right: inherit;` will remove default value.
+
+		4. Make `relatives` background half transparent
+		   ```css
+		   .relatives {
+		   	background: rgba(0, 0, 0, 0.67);
+		   }
+		   ```
+		</xmp>
+
+	</div>
+
+</div>

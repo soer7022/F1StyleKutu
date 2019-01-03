@@ -1,0 +1,233 @@
+<div class="row twitch">
+	<div class="col-md-12">
+
+		<p ng-if="!ready" class="text-center">
+			<span class="glyphicon glyphicon-refresh animate-spin"></span>
+		</p>
+
+		<div ng-show="error" class="alert alert-danger alert-dismissable">
+			<button ng-click="error = null" type="button" class="close">&times;</button>
+			<strong ng-bind="error.error"></strong>: <span ng-bind="error.message"></span>
+		</div>
+
+		<p class="text-right">
+			<span app-ir-status></span>
+		</p>
+
+		<button ng-if="ready && !authenticated" ng-click="connect()" class="center-block twitch-connect-btn"></button>
+
+		<div ng-if="authenticated">
+
+			<!-- status -->
+			<div class="input-group has-feedback input-status">
+				<span class="input-group-addon">Twitch Status</span>
+				<input ng-model="status" ng-disabled="statusUpdating" type="text" class="form-control">
+
+				<span class="input-group-btn">
+					<a ng-click="twitterShare()" class="btn btn-default"><img src="img/twitter-logo.png" class="twitter-share"></a>
+					<button ng-click="updateStatus(status)" ng-disabled="statusUpdating" class="btn btn-default" type="button">
+						<span ng-if="statusUpdating" class="glyphicon glyphicon-refresh animate-spin"></span>
+						Update
+					</button>
+				</span>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a ng-click="toggleSettingsPanel()" data-toggle="collapse" href="#template-params-help">
+							Settings
+						</a>
+					</h4>
+				</div>
+				<div id="template-params-help" ng-class="{ in: settings.showSettingsPanel }" class="panel-collapse collapse">
+
+					<div class="panel-body">
+
+						<form class="form-horizontal">
+
+							<!-- connected -->
+							<div class="form-group">
+								<label for="inputConnectedStatusTmpl" class="col-sm-3 control-label">Connected</label>
+								<div class="col-sm-9">
+									<div class="input-group">
+										<input ng-model="settings.connectedTmpl" ng-change="saveSettings()" type="text" class="form-control" id="inputConnectedStatusTmpl" />
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button" data-toggle="modal" data-target="#template-help">
+												<i class="glyphicon glyphicon-question-sign"></i>
+											</button>
+											<button ng-click="irUpdate(true)" ng-disabled="!ir.connected || statusUpdating" class="btn btn-default" type="button">Update</button>
+										</span>
+									</div>
+									<span class="help-block">This status will set when <em>connected</em> to iRacing</span>
+								</div>
+							</div>
+
+							<!-- disconnected -->
+							<div class="form-group">
+								<label for="inputDisconnectedStatusTmpl" class="col-sm-3 control-label">Disconnected</label>
+								<div class="col-sm-9">
+									<div class="input-group">
+										<input ng-model="settings.disconnectedTmpl" ng-change="saveSettings()" type="text" class="form-control" id="inputDisconnectedStatusTmpl" />
+										<span class="input-group-btn">
+											<button ng-click="irUpdate(true)" ng-disabled="ir.connected || statusUpdating" class="btn btn-default" type="button">Update</button>
+										</span>
+									</div>
+									<span class="help-block">This status will set when <em>disconnected</em> from iRacing</span>
+								</div>
+							</div>
+
+							<!-- auto-update -->
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<div class="checkbox">
+										<label>
+											<input ng-model="settings.autoUpdate" ng-change="saveSettings()" type="checkbox">
+											Auto-update status <em>(This page must stay open)</em>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<hr />
+
+							<!-- show new followers -->
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<div class="checkbox">
+										<label>
+											<input ng-model="settings.showNewFollowers" ng-change="saveSettings()" type="checkbox">
+											Show new followers notification on this page
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<!-- new follower sound -->
+							<div class="form-group">
+								<label for="inputNewFollowerSound" class="col-sm-3 control-label">New Follower Sound</label>
+								<div class="col-sm-9">
+									<div ng-class="{ 'has-error': newFollowerSoundError }" class="input-group">
+										<span class="input-group-addon">URL</span>
+										<input ng-model="settings.newFollowerSound" ng-change="saveSettings()" type="text" class="form-control" id="inputNewFollowerSound" />
+										<input ng-model="settings.newFollowerVolume" ng-change="saveSettings()" type="range" min="0" max="1" step="0.1" class="form-control" id="inputNewFollowerVolume" />
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button" data-toggle="modal" data-target="#custom-sound-help">
+												<i class="glyphicon glyphicon-question-sign"></i>
+											</button>
+											<button ng-click="testNewFollowerSound()" ng-disabled="newFollowerSoundError" class="btn btn-default" type="button">Test</button>
+										</span>
+									</div>
+									<span ng-show="newFollowerSoundError" class="help-block">Error occured while loading sound file. If you use default sound, try to change extension to .mp3 or .ogg</span>
+								</div>
+							</div>
+
+							<!-- dont play sound in race and qual -->
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<div class="checkbox">
+										<label>
+											<input ng-model="settings.noSoundInRaceOrQual" ng-change="saveSettings()" type="checkbox">
+											Don't play sound in Race and Qualification
+										</label>
+									</div>
+								</div>
+							</div>
+
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<form class="form-inline">
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.showStream" ng-change="saveSettings()" type="checkbox"> Stream
+								</label>
+							</div>
+							&nbsp;
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.showChat" ng-change="saveSettings()" type="checkbox"> Chat
+								</label>
+							</div>
+						</form>
+					</h4>
+				</div>
+				<div id="stream-chat" ng-class="{ in: settings.showStream || settings.showChat }" class="panel-collapse collapse">
+					<iframe ng-if="settings.showStream" app-twitch-stream width="100%" height="414" ng-src="{{ streamIFrameUrl }}" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
+					<iframe ng-if="settings.showChat" app-twitch-chat frameborder="0" scrolling="no" id="chat_embed" ng-src="{{ chatIFrameUrl }}" width="100%" height="335"></iframe>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="new-followers">
+		<div ng-repeat="f in showFollowers" ng-click="clickNewFollower(f)" class="panel panel-primary">
+			<div class="panel-heading">New Follower</div>
+			<div class="panel-body">
+				<img ng-src="{{ f.logo }}">
+				<p>
+					<b ng-bind="f.display_name"></b>
+				</p>
+				<p ng-bind="f.bio"></p>
+				<small>
+					Registered at
+					<span ng-bind="f.created_at | date"></span>
+				</small>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="template-help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Template parameters for <em>connected</em> status</h4>
+				</div>
+				<div class="modal-body">
+					<xmp app-markdown data-table-class="table table-condensed table-bordered">
+					| Value | Description |
+					|-------|-------------|
+					| `{0}` | Session Type (Race, Open/Lone Qualify, Practice, Offline Testing) |
+					| `{1}` | Car Class or Car Name for tested or hosted sessions (eg: GT3 Class, rufrt12r track) |
+					| `{2}` | Track Display Name (eg: Phillip Island Grand Prix Circuit) |
+					</xmp>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="custom-sound-help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">How to set custom sound</h4>
+				</div>
+				<div class="modal-body">
+					<xmp app-markdown>
+					1. Create `apps/sounds` folder in the server directory
+					2. Put your sound file in `apps/sounds`
+					3. Input in `URL` `http://localhost:8182/sounds/my-sound.mp3`
+					</xmp>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

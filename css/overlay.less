@@ -1,0 +1,690 @@
+@import (inline) "/libs/bootstrap/css/bootstrap.min.css";
+
+@bootstrap-path: "/libs/bootstrap/less/";
+
+@import "@{bootstrap-path}variables.less";
+
+@import "@{bootstrap-path}mixins/size.less";
+@import "@{bootstrap-path}mixins/text-overflow.less";
+@import "@{bootstrap-path}mixins/vendor-prefixes.less";
+
+@icon-font-path: "/libs/bootstrap/fonts/";
+@import "@{bootstrap-path}glyphicons.less";
+
+@body-bg: black;
+@text-color: white;
+@font-family-sans-serif: 'Segoe UI';
+@font-family-monospace: Consolas;
+@font-size-base: 16px;
+
+body {
+  font-family: @font-family-base;
+  font-size: @font-size-base;
+  line-height: @line-height-base;
+  color: @text-color;
+  background-color: @body-bg;
+  overflow: hidden;
+}
+
+// MIXINS
+
+.text-shadow(@shadow-color: black, @blur: 2px) {
+  text-shadow: 1px 1px @blur @shadow-color,
+    1px -1px @blur @shadow-color,
+  -1px 1px @blur @shadow-color,
+    -1px -1px @blur @shadow-color;
+}
+
+// MAIN
+
+::-webkit-scrollbar {
+  visibility: hidden;
+}
+
+html, body {
+  background: transparent;
+  // background: black url('../test/screenshot-flag.png') no-repeat top center;
+  // background: black url('../test/iRacingSim 2014-04-30 10-29-48-526.png') no-repeat top center;
+  // background-size: cover;
+}
+
+// VARIABLES
+
+@default-bg-color: #000;
+@default-bg-opacity: 90%;
+@default-bg: grey;
+
+// STANDINGS
+
+@standings-bg-color: @default-bg-color;
+@standings-bg-opacity: 30%;
+@standings-bg: fade(@default-bg-color, @standings-bg-opacity);
+@standings-bg-opacity-2: 75%;
+
+@standings-divider-bg: @standings-bg;
+
+@standings-position-bg: white;
+@standings-gain-bg: @standings-bg;
+@standings-gain-up: #4dff51;
+@standings-gain-down: #f90;
+@standings-car-number-bg: fade(#ff0, @standings-bg-opacity-2);
+@standings-car-image-bg: @standings-bg;
+@standings-driver-name-bg: @standings-bg;
+@standings-driver-name-gain-up-bg: fade(#3c3, @standings-bg-opacity-2);
+@standings-driver-name-gain-down-bg: fade(#f33, @standings-bg-opacity-2);
+@standings-gap-bg: @standings-bg;
+@standings-int-bg: @standings-bg;
+
+@standings-lap-time-bg: @standings-bg;
+@standings-lap-pb-time-bg: fade(#393, @standings-bg-opacity-2);
+@standings-lap-best-time-bg: fade(#c0c, @standings-bg-opacity-2);
+@standings-lap-time-new: #4dff51;
+@standings-pit-bg: fade(#ff0, @standings-bg-opacity-2);
+@standings-pit-stall-bg: fade(#f33, @standings-bg-opacity-2);
+@standings-offtrack: #4dff51;
+@standings-incidents: #4dff51;
+
+@standings-current-camera-car: #4dff51;
+
+@standings-radio-transmit: #f60;
+
+//Fonts
+@font-face {
+  font-family: Formula1;
+  src: url("Formula1-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Formula1;
+  font-weight: bold;
+  src: url("Formula1-Bold.otf") format("opentype");
+}
+
+.standings {
+  font-weight: bold;
+  position: absolute;
+  top: 24%;
+}
+
+.standings-row {
+  > td {
+    padding-left: .25em;
+    padding-right: .25em;
+    background: @standings-bg;
+  }
+
+  &.divider > td {
+    color: rgba(0, 0, 0, 0);
+    background: @standings-divider-bg;
+    border: none;
+    height: @line-height-computed;
+
+    &.other {
+      display: none;
+    }
+  }
+
+  &.current {
+  }
+
+  > .position, > .gain, > .class-position, > .car-number, > .gap-time, > .int-time, > .lap-time {
+    font-family: Formula1;
+    text-align: right;
+    font-size: 12px;
+  }
+
+  > .car-number {
+    padding: 2px;
+    width: 10px;
+    height: 80%;
+  }
+
+  > .position {
+    text-align: center;
+    color: black;
+    position: relative;
+    z-index: 2;
+    padding: 0 5px;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 3px;
+      right: 3px;
+      bottom: 2px;
+      background: @standings-position-bg;
+      z-index: -1;
+    }
+  }
+  > .gain {
+    display: none;
+    background: @standings-gain-bg;
+    padding-left: 0;
+    .text-shadow();
+    &.gain-up {
+      color: @standings-gain-up;
+    }
+    &.gain-down {
+      color: @standings-gain-down;
+    }
+  }
+
+  > .class-position {
+    border-right: fade(black, 20%) solid 2px;
+  }
+  > .class-position, > .car-number {
+    color: black;
+  }
+
+  > .car-image {
+    background-color: @standings-car-image-bg;
+    background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: center;
+    .size(46px, 22px);
+  }
+
+  > .driver-name {
+    padding-left: .4em;
+    padding-right: .4em;
+    background: @standings-driver-name-bg;
+    max-width: 200px;
+    .text-overflow();
+    .text-shadow();
+    .transition(1s 2s ease-in background);
+
+    > .glyphicon {
+      top: 2px;
+      color: @standings-radio-transmit;
+    }
+  }
+  &.gain-up > .driver-name {
+    .transition(0s ease-in background);
+    background: @standings-driver-name-gain-up-bg;
+  }
+  &.gain-down > .driver-name {
+    .transition(0s ease-in background);
+    background: @standings-driver-name-gain-down-bg;
+  }
+
+  > .gap-time {
+    background: @standings-gap-bg;
+    .text-shadow();
+  }
+  > .int-time {
+    background: @standings-int-bg;
+    .text-shadow();
+  }
+
+  > .other {
+    padding: 0;
+
+    > span {
+      float: left;
+      padding-left: .25em;
+      padding-right: .25em;
+    }
+
+    > .lap-time {
+      font-family: @font-family-monospace;
+    }
+
+    > .lap-time {
+      background: @standings-lap-time-bg;
+      .text-shadow();
+
+      &.pb {
+        background: @standings-lap-pb-time-bg;
+        text-shadow: none;
+      }
+      &.best {
+        background: @standings-lap-best-time-bg;
+        text-shadow: none;
+      }
+
+      .transition(~".5s 5s linear color, .5s 5s text-shadow");
+      color: inherit;
+      &.new-lap {
+        .transition(~"0s linear color, 0s linear text-shadow");
+        color: @standings-lap-time-new;
+        &.pb, &.best {
+          .text-shadow();
+        }
+      }
+    }
+    > .pit {
+      font-weight: normal;
+      color: black;
+      padding-right: .3em;
+      background: @standings-pit-bg;
+      &.stall {
+        color: inherit;
+        background: @standings-pit-stall-bg;
+        text-shadow: inherit;
+      }
+    }
+    > .offtrack {
+      font-weight: normal;
+      color: @standings-offtrack;
+      background: @standings-bg;
+      .text-shadow();
+    }
+    > .incidents {
+      font-family: @font-family-monospace;
+      font-weight: normal;
+      color: @standings-incidents;
+      background: @standings-bg;
+      .text-shadow();
+    }
+  }
+}
+
+// SESSION INFO
+
+@session-info-checkered-flag-size: 16px;
+
+.session-info {
+  font-size: 1.1em;
+  width: 420px - 2*12px;
+  position: absolute;
+  bottom: 6px;
+
+  > tbody > tr > td {
+    &.type-time {
+      text-align: right;
+    }
+    > .checkered-flag {
+      display: inline-block;
+      background: url('../img/checkered-flag.png') no-repeat;
+      background-size: @session-info-checkered-flag-size;
+      .square(@session-info-checkered-flag-size);
+      margin-bottom: -1px;
+    }
+    > .time, > .lap {
+      font-family: @font-family-monospace;
+      margin-left: .5em;
+    }
+  }
+}
+
+// RELATIVE
+
+@relatives-bg: @default-bg-color;
+@relatives-not-on-track-bg: @default-bg;
+@relatives-color: white;
+@relatives-current: #ffb923;
+@relatives-lapper: #00c0ff;
+@relatives-faraway: #fe3030;
+
+.relatives {
+  font-weight: bold;
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 420px;
+  height: 220px;
+  background: @relatives-bg;
+  border-radius: 6px;
+  padding: 12px;
+
+  &.not-on-track {
+    background: @relatives-not-on-track-bg;
+  }
+
+  &.compact {
+    width: 356px;
+    height: 38px;
+    background: @relatives-not-on-track-bg;
+
+    > .relatives-table {
+      display: none;
+    }
+
+    > .session-info {
+      width: 356px - 2*12px;
+    }
+  }
+
+  > .relatives-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .relatives-row {
+    height: 24px;
+
+    > td {
+      padding-left: .25ch;
+      padding-right: .25ch;
+    }
+
+    &.divider > td {
+      color: rgba(0, 0, 0, 0);
+      border: none;
+    }
+    &.pit {
+      color: darken(@relatives-color, 50%);
+    }
+    &.current {
+      color: @relatives-current;
+    }
+    &.lapper {
+      color: @relatives-lapper;
+      &.pit {
+        color: darken(@relatives-lapper, 25%);
+      }
+    }
+    &.faraway {
+      color: @relatives-faraway;
+      &.pit {
+        color: darken(@relatives-faraway, 25%);
+      }
+    }
+
+    > .position, > .class-position, > .car-number, > .int-time, > .safety-rating, > .irating {
+      font-family: @font-family-monospace;
+      text-align: right;
+    }
+
+    > .position {
+      width: 2.75ch;
+      padding-right: .5ch;
+    }
+    > .class-position {
+      width: 3ch;
+      padding-right: .5ch;
+      border-right: fade(black, 20%) solid 2px;
+    }
+    > .class-position, > .car-number {
+      color: black;
+    }
+
+    > .car-number {
+
+      width: 4.5ch;
+    }
+
+    > .driver-name {
+      padding-left: .4em;
+      .text-overflow();
+
+      > .glyphicon {
+        top: 2px;
+        color: @standings-radio-transmit;
+      }
+    }
+
+    > .safety-rating, > .irating {
+      font-size: .9em;
+
+      > span {
+        padding-left: .4ch;
+        padding-right: .4ch;
+        border-radius: 2px;
+      }
+    }
+    > .safety-rating {
+      width: 5.3ch;
+    }
+    > .irating {
+      width: 5.3ch;
+      color: black;
+      span {
+        background: white;
+      }
+    }
+
+    > .int-time {
+      width: 7.5ch;
+    }
+
+  }
+}
+
+// CAR
+
+@car-fuel-icon-size: 30px;
+@car-temp-icon-size: 18px;
+
+.car {
+  position: absolute;
+  left: 206px;
+  bottom: 12px;
+
+  > ul {
+    background: @default-bg;
+    margin: 0;
+    padding: 6px;
+    border-radius: 6px;
+
+    > li {
+      display: table-cell;
+      vertical-align: middle;
+      white-space: nowrap;
+
+      &.fuel {
+        > i, > div {
+          vertical-align: middle;
+        }
+
+        > div {
+          display: inline-block;
+          margin-left: 4px;
+          text-align: right;
+
+          > .level, > .calc {
+            display: block;
+          }
+
+          > .level {
+            font-size: 30px;
+            line-height: 1;
+          }
+
+          > .calc {
+            font-weight: bold;
+          }
+        }
+      }
+
+      &.temps {
+        font-weight: bold;
+
+        > div {
+          padding-left: 4px;
+
+          > i, > div {
+            vertical-align: middle;
+          }
+
+          > div {
+            display: inline-block;
+            font-size: 17px;
+            line-height: 1;
+            margin: 2px 0px 4px;
+          }
+        }
+      }
+
+      &.wind {
+        position: relative;
+        .square(50px);
+
+        > .arrow {
+          .square(50px);
+          vertical-align: middle;
+          fill: none;
+          stroke-width: 60px;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        > .wind-value {
+          position: absolute;
+          top: 11px;
+          left: 5px;
+          width: 50px;
+          font-size: 22px;
+          font-weight: bold;
+          text-align: center;
+        }
+      }
+
+      i {
+        display: inline-block;
+
+        .icon-setup(@size, @url) {
+          .square(@size);
+          background: url(@url) no-repeat center;
+          background-size: @size @size;
+        }
+
+        &.icon-fuel-level {
+          .icon-setup(@car-fuel-icon-size, '../img/fuel-level.png');
+          height: 52px;
+        }
+        &.icon-oil-temp {
+          .icon-setup(@car-temp-icon-size, '../img/oil-temp.png');
+        }
+        &.icon-water-temp {
+          .icon-setup(@car-temp-icon-size, '../img/water-temp.png');
+        }
+        &.icon-track-temp {
+          .icon-setup(@car-temp-icon-size, '../img/track-temp.png');
+        }
+        &.icon-sof {
+          .icon-setup(@car-temp-icon-size, '../img/sof.png');
+        }
+      }
+
+      span {
+        font-family: @font-family-monospace;
+      }
+    }
+  }
+}
+
+// TYRES
+
+.tyres {
+  position: absolute;
+  right: 12px + 420px + 12px;
+  bottom: 12px;
+  background: @default-bg;
+  margin: 0;
+  padding: 3px;
+  border-radius: 6px;
+
+  > .item {
+    display: inline-block;
+    margin: 3px;
+
+    > .temp {
+      display: table;
+      font-weight: bold;
+
+      > .row {
+        display: table-row;
+
+        > span {
+          display: table-cell;
+          width: 4ch;
+          text-align: center;
+        }
+      }
+
+      > .bars {
+        height: 16px;
+
+        > span {
+          .transition(1s linear background);
+
+          &:first-child {
+            border-top-left-radius: 10px;
+          }
+          &:last-child {
+            border-top-right-radius: 10px;
+          }
+        }
+
+      }
+
+    }
+
+    > .pres {
+      text-align: center;
+
+      > span:first-child {
+        font-weight: bold;
+      }
+    }
+
+    span {
+      font-family: @font-family-monospace;
+    }
+  }
+
+}
+
+// TWITCH
+
+.twitch {
+  position: absolute;
+  top: 12px;
+
+  .new-follower {
+    position: fixed;
+    left: 12px;
+    background: @default-bg;
+    border-radius: 6px;
+    padding: 6px 12px 10px;
+    font-size: 24px;
+
+    &.ng-hide-add,
+    &.ng-hide-remove {
+      .transition(.5s ease-out all);
+      display: block !important;
+    }
+    &.ng-hide-add {
+      top: inherit;
+    }
+    &.ng-hide-add-active {
+      display: block;
+      top: -3 * @line-height-computed;
+    }
+    &.ng-hide-remove {
+      top: -3 * @line-height-computed;
+    }
+    &.ng-hide-remove-active {
+      top: inherit;
+    }
+  }
+
+  .counters {
+    position: fixed;
+    right: 12px;
+    background: @default-bg;
+    border-radius: 6px;
+    padding: 6px;
+
+    > ul {
+      margin: 0;
+      padding: 0 5px;
+
+      > li {
+        padding: 0;
+
+        &.followers {
+          padding-left: 15px;
+        }
+
+        > i {
+          font-size: 14px;
+        }
+        > span {
+          font-weight: bold;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

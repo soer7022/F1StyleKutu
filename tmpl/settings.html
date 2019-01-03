@@ -1,0 +1,211 @@
+<div class="row settings">
+	<div class="col-md-12">
+		<form class="form-horizontal">
+
+			<!-- url -->
+			<div class="input-group input-url">
+				<span class="input-group-addon">Browser URL</span>
+				<input ng-model="url" ng-change="changeURL()" type="url" class="form-control">
+			</div>
+
+			<!-- standings -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Standings</h3>
+				</div>
+				<div class="panel-body">
+					<!-- max rows -->
+					<div class="form-group">
+						<label for="inputStandingsMaxRows" class="col-sm-3 control-label">Max Rows</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.standingsMaxRows" ng-change="saveSettings()" type="number" class="form-control" id="inputStandingsMaxRows" min="3" max="64" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">Maximum number of rows in standings table.</span>
+						</div>
+					</div>
+
+					<!-- window -->
+					<div class="form-group">
+						<label for="inputStandingsWindow" class="col-sm-3 control-label">Window</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.standingsWindow" ng-change="saveSettings()" type="number" class="form-control" id="inputStandingsWindow" min="1" max="61" step="2" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">If number of rows in standings table exceed <em>Max Rows</em>, then table will split in two parts. <em>Window</em> value should be odd, <em>eg: 3, 5, 7, ...etc</em>.</span>
+						</div>
+					</div>
+
+					<!-- multiclass -->
+					<div class="form-group">
+						<label for="inputStandingsMulticlass" class="col-sm-3 control-label">Multiclass</label>
+						<div class="col-sm-9">
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.standingsMulticlass" ng-change="saveSettings()" type="checkbox" id="inputStandingsMulticlass">
+									Show standings as multiclass. Turn off to show only your class. <em>It will not affect "relatives" box. This option is useful if you participate in large multiclass races in a slower class car.</em>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- twitch -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Twitch</h3>
+				</div>
+				<div class="panel-body">
+					<!-- channel -->
+					<div class="form-group">
+						<label for="inputTwitchChannel" class="col-sm-3 control-label">Channel</label>
+						<div class="col-sm-3">
+							<input ng-model="settings.twitchChannel" ng-change="saveSettings()" type="text" class="form-control" id="inputTwitchChannel" />
+						</div>
+						<div class="col-sm-6">
+							<span class="help-block">To show <em>new followers</em> notification, and current <em>viewers</em>/<em>followers</em> counters.</span>
+						</div>
+					</div>
+
+					<!-- new follower tmpl -->
+					<div ng-show="settings.twitchChannel" class="form-group">
+						<label for="inputTwitchNewFollowerTmpl" class="col-sm-3 control-label">New Follower Tmpl</label>
+						<div class="col-sm-9">
+							<input ng-model="settings.twitchNewFollowerTmpl" ng-change="saveSettings()" type="text" class="form-control" id="inputTwitchNewFollowerTmpl" />
+							<span class="help-block">New follower template string. Use <code>{0}</code> as follower username. You can use html tags. Clear field to hide new follower notifications.</span>
+						</div>
+					</div>
+
+					<!-- new follower timeout -->
+					<div ng-show="settings.twitchChannel && settings.twitchNewFollowerTmpl" class="form-group">
+						<label for="inputNewFollowerTimeout" class="col-sm-3 control-label">Notification Timeout</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.twitchNewFollowerTimeout" ng-change="saveSettings()" type="number" class="form-control" id="inputNewFollowerTimeout" min="5" max="30" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">How long to show new follower notification, <em>in seconds</em>.</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- miscellaneous -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Miscellaneous</h3>
+				</div>
+				<div class="panel-body">
+					<!-- relatives compact -->
+					<div class="form-group">
+						<label for="inputRelativesCompact" class="col-sm-3 control-label">Relatives</label>
+						<div class="col-sm-9">
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.relativesCompact" ng-change="saveSettings()" type="checkbox" id="inputRelativesCompact">
+									Compact mode (aka Matt Malone style, will only show "Lap" and "Session").
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- car fuel -->
+					<div class="form-group">
+						<label for="inputCarFuel" class="col-sm-3 control-label">Car Fuel</label>
+						<div class="col-sm-9">
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.carFuel" ng-change="saveSettings()" type="checkbox" id="inputCarFuel">
+									Show fuel.
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- car temps -->
+					<div class="form-group">
+						<label for="inputCarTemps" class="col-sm-3 control-label">Car Temps</label>
+						<div class="col-sm-9">
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.carTemps" ng-change="saveSettings()" type="checkbox" id="inputCarTemps">
+									Show oil and water temps.
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- car wind -->
+					<div class="form-group">
+						<label for="inputCarWind" class="col-sm-3 control-label">Wind</label>
+						<div class="col-sm-9">
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.carWind" ng-change="saveSettings()" type="checkbox" id="inputCarWind">
+									Show wind speed and direction that affect car at the moment.
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- weather sof -->
+					<div class="form-group">
+						<label for="inputWeatherSOF" class="col-sm-3 control-label">Track temp & SOF</label>
+						<div class="col-sm-9">
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.carWeatherSOF" ng-change="saveSettings()" type="checkbox" id="inputWeatherSOF">
+									Show track temperature and SOF.
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<!-- showTyres -->
+					<div class="form-group">
+						<label for="inputShowTyres" class="col-sm-3 control-label">Tyre Temps</label>
+						<div class="col-sm-9">
+							<div class="checkbox">
+								<label>
+									<input ng-model="settings.showTyres" ng-change="saveSettings()" type="checkbox" id="inputShowTyres">
+									Show tyres temps and pressures from IBT files. <em ng-show="settings.showTyres" class="text-muted">It will not possible to save your telemetry files as usual. This option will harass your hard drive with creating and deleting ibt files every 6 seconds. If you use SSD you can create a symbolic link for Telemetry folder to your regular HDD or even better you can create a <a href="http://www.softperfect.com/products/ramdisk/" target="_blank">"RAM Disk"</a> and point your Telemetry folder with symbolic link to this virtual disk to avoid that harassment at all. Test this option in practice session before racing. With checked this option, iRacing will always show <span class="label label-default">Telemetry</span> label while you are on track.</em>
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- system -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">System</h3>
+				</div>
+				<div class="panel-body">
+					<!-- host -->
+					<div ng-if="!isDefaultHost" class="form-group">
+						<label for="inputHost" class="col-sm-3 control-label">Server</label>
+						<div class="col-sm-3">
+							<input ng-model="settings.host" ng-change="saveSettings()" type="text" class="form-control" id="inputHost" placeholder="127.0.0.1:8182" />
+						</div>
+						<div class="col-sm-6">
+							<span class="help-block">Your iRacing Browser Apps Server address and port.</span>
+						</div>
+					</div>
+
+					<!-- fps -->
+					<div class="form-group">
+						<label for="inputFps" class="col-sm-3 control-label">FPS</label>
+						<div class="col-sm-2">
+							<input ng-model="settings.fps" ng-change="saveSettings()" type="number" class="form-control" id="inputFps" placeholder="10" min="1" max="60" />
+						</div>
+						<div class="col-sm-7">
+							<span class="help-block">How often server will send data (1-60). <em>This option is CPU expensive</em>. It will affect relative black box precision.</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
