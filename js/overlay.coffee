@@ -201,6 +201,10 @@ app.controller 'StandingsCtrl', ($scope, $element, config, iRData) ->
     $scope.$watch 'ir.connected', (n, o) ->
         $element.toggleClass 'ng-hide', not n
         # console.log ir
+    $scope.formatName = (name)->
+        n = name.split(" ");
+        return n[n.length - 1].slice(0, 3).toUpperCase();
+
 
     # test
     # $scope.$watch 'ir.SessionNum', (n, o) ->
