@@ -57,7 +57,7 @@ html, body {
 // STANDINGS
 
 @standings-bg-color: @default-bg-color;
-@standings-bg-opacity: 90%;
+@standings-bg-opacity: 60%;
 @standings-bg: fade(@default-bg-color, @standings-bg-opacity);
 @standings-bg-opacity-2: 75%;
 
@@ -103,7 +103,8 @@ html, body {
 .standings {
   font-weight: bold;
   position: absolute;
-  top: 24%;
+  top: 50px;
+  left: 50px;
 }
 
 .standings-row {
@@ -235,10 +236,12 @@ html, body {
   }
 
   > .gap-time {
-    background: @standings-gap-bg;
-    .text-shadow();
+    background: @standings-bg;
+    text-align: right;
+    padding: 0 10px;
   }
   > .int-time {
+    display: none;
     background: @standings-int-bg;
     .text-shadow();
   }
@@ -250,6 +253,8 @@ html, body {
       float: left;
       padding-left: .25em;
       padding-right: .25em;
+      font-family: Formula1;
+      color: white;
     }
 
     > .lap-time {
@@ -257,6 +262,7 @@ html, body {
     }
 
     > .lap-time {
+      display: none;
       background: @standings-lap-time-bg;
       .text-shadow();
 
@@ -281,27 +287,23 @@ html, body {
     }
     > .pit {
       font-weight: normal;
-      color: black;
       padding-right: .3em;
-      background: @standings-pit-bg;
+      background: @standings-bg;
+      height: 100%;
       &.stall {
-        color: inherit;
-        background: @standings-pit-stall-bg;
-        text-shadow: inherit;
+        background: @standings-bg;
       }
     }
     > .offtrack {
       font-weight: normal;
-      color: @standings-offtrack;
+      color: #cc0000;
       background: @standings-bg;
-      .text-shadow();
     }
     > .incidents {
-      font-family: @font-family-monospace;
       font-weight: normal;
-      color: @standings-incidents;
       background: @standings-bg;
-      .text-shadow();
+      color: #cc0000;
+      display: none;
     }
   }
 }
