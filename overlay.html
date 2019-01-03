@@ -55,7 +55,7 @@
 			<!-- name -->
 			<td class="driver-name">
 				<span ng-if="ir.RadioTransmitCarIdx == i.CarIdx" class="glyphicon glyphicon-volume-up"></span>
-				<span ng-bind="ir.WeekendInfo.TeamRacing ? ir.DriversByCarIdx[i.CarIdx].TeamName : formatName(ir.DriversByCarIdx[i.CarIdx].UserName)"></span>
+				<span ng-bind="ir.WeekendInfo.TeamRacing ? ir.DriversByCarIdx[i.CarIdx].TeamName : ir.DriversByCarIdx[i.CarIdx].UserName"></span>
 			</td>
 			<!-- gap -->
 			<td app-standings-gap="i.CarIdx" class="gap-time"></td>
