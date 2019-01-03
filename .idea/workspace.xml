@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2bf603d-2417-4866-a9bf-10e44ec75577" name="Default Changelist" comment="" />
+    <list default="true" id="c2bf603d-2417-4866-a9bf-10e44ec75577" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/overlay.less" beforeDir="false" afterPath="$PROJECT_DIR$/css/overlay.less" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/overlay.coffee" beforeDir="false" afterPath="$PROJECT_DIR$/js/overlay.coffee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/overlay.html" beforeDir="false" afterPath="$PROJECT_DIR$/overlay.html" afterDir="false" />
+    </list>
+    <list id="b6a0b980-5c4b-46c6-9f1a-fb1e9fe8a5d5" name="Revert &quot;Added name formatting&quot;" comment="Revert &quot;Added name formatting&quot;&#10;&#10;This reverts commit db18d0d" />
+    <ignored path="C:\Users\au577936\Desktop\iRacingBrowserApps\apps\stream-overlay\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,10 +19,13 @@
     <session id="1995216467">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.10" value="2" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -32,14 +42,18 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="coffee" value="14" />
-          <entry key="less" value="305" />
+          <entry key="coffee" value="162" />
+          <entry key="html" value="14" />
+          <entry key="less" value="586" />
+          <entry key="txt" value="56" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CoffeeScript" value="14" />
-          <entry key="Less" value="305" />
+          <entry key="CoffeeScript" value="162" />
+          <entry key="HTML" value="14" />
+          <entry key="Less" value="586" />
+          <entry key="PLAIN_TEXT" value="56" />
         </counts>
       </usages-collector>
     </session>
@@ -49,8 +63,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/overlay.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="462" column="23" lean-forward="true" selection-start-line="462" selection-start-column="23" selection-end-line="462" selection-end-column="23" />
+            <state relative-caret-position="9231">
+              <caret line="543" column="53" selection-start-line="543" selection-start-column="53" selection-end-line="543" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overlay.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -58,8 +81,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/overlay.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="132" column="17" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
+            <state relative-caret-position="408">
+              <caret line="270" column="6" selection-start-line="270" selection-start-column="6" selection-end-line="270" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -72,7 +95,19 @@
       <find>number</find>
       <find>after</find>
       <find>before</find>
+      <find>isRace</find>
+      <find>Gap</find>
+      <find>font</find>
+      <find>pit</find>
+      <find>Laps</find>
+      <find>NO time</find>
+      <find>interval</find>
+      <find>divider</find>
+      <find>''</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="projectSyncType">
@@ -84,6 +119,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/overlay.html" />
         <option value="$PROJECT_DIR$/js/overlay.coffee" />
         <option value="$PROJECT_DIR$/css/overlay.less" />
       </list>
@@ -103,13 +139,12 @@
     <option name="width" value="1056" />
     <option name="height" value="1047" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -127,13 +162,26 @@
               <item name="stream-overlay" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="stream-overlay" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stream-overlay" type="462c0819:PsiDirectoryNode" />
+              <item name="sound" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="stream-overlay" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stream-overlay" type="462c0819:PsiDirectoryNode" />
+              <item name="tmpl" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="GO_FMT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546518224531" />
@@ -178,17 +226,51 @@
       <updated>1546475162179</updated>
       <workItem from="1546475163946" duration="698000" />
       <workItem from="1546516756525" duration="1465000" />
+      <workItem from="1546532767437" duration="91000" />
+      <workItem from="1546540760380" duration="778000" />
+      <workItem from="1546547463297" duration="2369000" />
+      <workItem from="1546551427649" duration="201000" />
+      <workItem from="1546551810573" duration="1671000" />
     </task>
+    <task id="LOCAL-00001" summary="Revert &quot;Added name formatting&quot;&#10;&#10;This reverts commit db18d0d">
+      <created>1546527381528</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1546527381528</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Revert &quot;Added name formatting&quot;&#10;&#10;This reverts commit db18d0d">
+      <created>1546527476679</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1546527476679</updated>
+    </task>
+    <task id="LOCAL-00003" summary="v1.0">
+      <created>1546529212010</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1546529212010</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Show laps completed next to leader if in a race">
+      <created>1546532843572</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1546532843572</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2163000" />
+    <option name="totallyTimeSpent" value="9196000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26865673" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -202,10 +284,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4989339" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="8" sideWeight="0.5042644" side_tool="true" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49573562" visible="true" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -223,21 +305,76 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Revert &quot;Added name formatting&quot;&#10;&#10;This reverts commit db18d0d" />
+    <MESSAGE value="v1.0" />
+    <MESSAGE value="Show laps completed next to leader if in a race" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show laps completed next to leader if in a race" />
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/tmpl/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tmpl/settings.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8755">
+          <caret line="515" column="13" selection-start-line="515" selection-start-column="8" selection-end-line="515" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overlay.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/overlay.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="462" column="23" lean-forward="true" selection-start-line="462" selection-start-column="23" selection-end-line="462" selection-end-column="23" />
+        <state relative-caret-position="9231">
+          <caret line="543" column="53" selection-start-line="543" selection-start-column="53" selection-end-line="543" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/overlay.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="132" column="17" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
+        <state relative-caret-position="408">
+          <caret line="270" column="6" selection-start-line="270" selection-start-column="6" selection-end-line="270" selection-end-column="6" />
         </state>
       </provider>
     </entry>

@@ -1,250 +1,99 @@
 <!doctype html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="author" content="Mihail Latyshov" />
-	<title>Stream Overlay &middot; iRacing Browser Apps</title>
-	<!-- less -->
-	<link rel="stylesheet/less" type="text/css" href="css/overlay.less" />
-	<script src="/libs/less.min.js"></script>
-	<!-- angular -->
-	<script src="/libs/angular/angular.min.js"></script>
-	<script src="/libs/angular/angular-animate.min.js"></script>
-	<script src="/libs/angular/angular-route.min.js"></script>
-	<script src="/libs/angular/angular-sanitize.min.js"></script>
-	<!-- coffee -->
-	<script src="/libs/coffee-script.js"></script>
-	<script src="/libs/ir/ir.coffee" type="text/coffeescript"></script>
-	<script src="js/overlay.coffee" type="text/coffeescript"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mihail Latyshov"/>
+    <title>Stream Overlay &middot; iRacing Browser Apps</title>
+    <!-- less -->
+    <link rel="stylesheet/less" type="text/css" href="css/overlay.less"/>
+    <script src="/libs/less.min.js"></script>
+    <!-- angular -->
+    <script src="/libs/angular/angular.min.js"></script>
+    <script src="/libs/angular/angular-animate.min.js"></script>
+    <script src="/libs/angular/angular-route.min.js"></script>
+    <script src="/libs/angular/angular-sanitize.min.js"></script>
+    <!-- coffee -->
+    <script src="/libs/coffee-script.js"></script>
+    <script src="/libs/ir/ir.coffee" type="text/coffeescript"></script>
+    <script src="js/overlay.coffee" type="text/coffeescript"></script>
 </head>
 <body ng-cloak>
 
 <div ng-controller="TwitchCtrl" class="twitch">
-	<div ng-show="showNewFollower" class="new-follower">
-		<span ng-bind-html="newFollower"></span>
-	</div>
-	<div class="counters">
-		<ul class="list-inline">
-			<li class="viewers">
-				<i class="glyphicon glyphicon-eye-open"></i>
-				<span ng-bind="viewers"></span>
-			</li>
-			<li class="followers">
-				<i class="glyphicon glyphicon-heart"></i>
-				<span ng-bind="followers"></span>
-			</li>
-		</ul>
-	</div>
+    <div ng-show="showNewFollower" class="new-follower">
+        <span ng-bind-html="newFollower"></span>
+    </div>
+    <div class="counters">
+        <ul class="list-inline">
+            <li class="viewers">
+                <i class="glyphicon glyphicon-eye-open"></i>
+                <span ng-bind="viewers"></span>
+            </li>
+            <li class="followers">
+                <i class="glyphicon glyphicon-heart"></i>
+                <span ng-bind="followers"></span>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <table ng-controller="StandingsCtrl" class="standings">
-	<tbody>
-		<tr ng-repeat="i in standings track by i.CarIdx" app-standings-row="i.CarIdx" class="standings-row">
-			<!-- position -->
-			<td app-standings-position="i.CarIdx" class="position"></td>
-			<!-- gain -->
-			<td app-standings-gain="i.CarIdx" class="gain"></td>
-			<!-- class position -->
-			<td app-standings-class-position="i.CarIdx" class="class-position"></td>
-			<!-- car number -->
-			<td app-car-number="i.CarIdx" class="car-number"></td>
-			<!-- car image -->
-			<!-- <td app-car-image="i.CarIdx" class="car-image"></td> -->
-			<!-- name -->
-			<td class="driver-name">
-				<span ng-if="ir.RadioTransmitCarIdx == i.CarIdx" class="glyphicon glyphicon-volume-up"></span>
-				<span ng-bind="ir.WeekendInfo.TeamRacing ? ir.DriversByCarIdx[i.CarIdx].TeamName : formatName(ir.DriversByCarIdx[i.CarIdx].UserName)"></span>
-			</td>
-			<!-- gap -->
-			<td app-standings-gap="i.CarIdx" class="gap-time"></td>
-			<!-- interval -->
-			<td app-standings-int="i.CarIdx" class="int-time"></td>
-			<!-- other -->
-			<td class="other">
-				<!-- last lap time -->
-				<span app-standings-lap-time="i.CarIdx" class="lap-time"></span>
-				<!-- incidents -->
-				<span app-standings-incidents="i.CarIdx" class="incidents"></span>
-				<!-- pit -->
-				<span ng-show="i && ir.CarIdxOnPitRoad[i.CarIdx]" ng-class="{ 'stall': ir.CarIdxTrackSurface[i.CarIdx] == 1 }" class="pit">PIT</span>
-				<!-- <span class="pit">PIT</span> -->
-				<!-- <span class="pit stall">PIT</span> -->
-				<!-- offtrack -->
-				<span ng-show="i && ir.CarIdxTrackSurface[i.CarIdx] == 0" class="offtrack">OFFTRACK</span>
-				<!-- <span class="offtrack">OFFTRACK</span> -->
-			</td>
-		</tr>
-	</tbody>
+    <tbody>
+    <tr ng-repeat="i in standings track by i.CarIdx" app-standings-row="i.CarIdx" class="standings-row">
+        <!-- position -->
+        <td app-standings-position="i.CarIdx" class="position"></td>
+        <!-- gain -->
+        <td app-standings-gain="i.CarIdx" class="gain"></td>
+        <!-- class position -->
+        <td app-standings-class-position="i.CarIdx" class="class-position"></td>
+        <!-- car number -->
+        <td app-car-number="i.CarIdx" class="car-number"></td>
+        <!-- car image -->
+        <!-- <td app-car-image="i.CarIdx" class="car-image"></td> -->
+        <!-- name -->
+        <td class="driver-name">
+            <span ng-if="ir.RadioTransmitCarIdx == i.CarIdx" class="glyphicon glyphicon-volume-up"></span>
+            <span ng-bind="formatName(ir.DriversByCarIdx[i.CarIdx].UserName)"></span>
+        </td>
+        <!-- gap -->
+        <td app-standings-gap="i.CarIdx" class="gap-time"></td>
+        <!-- interval -->
+        <td app-standings-int="i.CarIdx" class="int-time"></td>
+        <!-- other -->
+        <td class="other">
+            <!-- last lap time -->
+            <span app-standings-lap-time="i.CarIdx" class="lap-time"></span>
+            <!-- incidents -->
+            <span app-standings-incidents="i.CarIdx" class="incidents"></span>
+            <!-- pit -->
+            <span ng-show="i && ir.CarIdxOnPitRoad[i.CarIdx]"
+                  ng-class="{ 'stall': ir.CarIdxTrackSurface[i.CarIdx] == 1 }" class="pit">PIT</span>
+            <!-- <span class="pit">PIT</span> -->
+            <!-- <span class="pit stall">PIT</span> -->
+            <!-- offtrack -->
+            <span ng-show="i && ir.CarIdxTrackSurface[i.CarIdx] == 0" class="offtrack">OFFTRACK</span>
+            <!-- <span class="offtrack">OFFTRACK</span> -->
+        </td>
+    </tr>
+    </tbody>
 </table>
 
 <div ng-controller="RelativesCtrl" ng-class="{ 'not-on-track': !ir.IsOnTrack }" class="relatives">
-	<table class="relatives-table">
-		<tr ng-repeat="carIdx in relatives track by carIdx" app-relatives-row="carIdx" class="relatives-row">
-			<!-- position -->
-			<td app-relatives-position="carIdx" class="position"></td>
-			<!-- class position -->
-			<td app-relatives-class-position="carIdx" class="class-position"></td>
-			<!-- car number -->
-			<td app-car-number="carIdx" class="car-number"></td>
-			<!-- name -->
-			<td class="driver-name">
-				<span ng-if="carIdx >= 0 && ir.RadioTransmitCarIdx == carIdx" class="glyphicon glyphicon-volume-up"></span>
-				<span ng-bind="ir.DriversByCarIdx[carIdx].UserName"></span>
-			</td>
-			<!-- safety rating -->
-			<td class="safety-rating">
-				<span app-safety-rating="carIdx"></span>
-			</td>
-			<!-- iRating -->
-			<td class="irating">
-				<span app-irating="carIdx"></span>
-			</td>
-			<!-- interval -->
-			<td app-relatives-int="carIdx" class="int-time"></td>
-		</tr>
-	</table>
-
-	<table ng-controller="SessionCtrl" class="session-info">
-		<tr>
-			<td>
-				Lap:
-				<span app-session-lap class="lap"></span>
-			</td>
-			<td class="type-time">
-				<span ng-if="ir.SessionState >= 5" class="checkered-flag"></span>
-				<span ng-bind="ir.SessionInfo.Sessions[ir.SessionNum].SessionName || ir.SessionInfo.Sessions[ir.SessionNum].SessionType"></span>:
-				<span app-session-time class="time"></span>
-			</td>
-		</tr>
-	</table>
+    <table ng-controller="SessionCtrl" class="session-info">
+        <tr>
+            <td>
+                Lap:
+                <span app-session-lap class="lap"></span>
+            </td>
+            <td class="type-time">
+                <span ng-if="ir.SessionState >= 5" class="checkered-flag"></span>
+                <span ng-bind="ir.SessionInfo.Sessions[ir.SessionNum].SessionName || ir.SessionInfo.Sessions[ir.SessionNum].SessionType"></span>:
+                <span app-session-time class="time"></span>
+            </td>
+        </tr>
+    </table>
 </div>
-
-<div ng-controller="CarCtrl" class="car">
-	<ul class="list-inline">
-		<li ng-if="showFuel" class="fuel">
-			<i class="icon-fuel-level"></i>
-			<div>
-				<span app-car-fuel class="level"></span>
-				<span app-car-fuel-calc class="calc"></span>
-			</div>
-		</li>
-		<li ng-if="showTemps" class="temps">
-			<div>
-				<i class="icon-oil-temp"></i>
-				<div>
-					<span app-car-temp="ir.OilTemp"></span>
-				</div>
-			</div>
-			<div>
-				<i class="icon-water-temp"></i>
-				<div>
-					<span app-car-temp="ir.WaterTemp"></span>
-				</div>
-			</div>
-		</li>
-		<li ng-if="showWind" class="wind">
-			<svg app-car-wind-dir xmlns="http://www.w3.org/2000/svg" viewBox="-30 -30 660 660" class="arrow">
-				<path class="cls-1" d="M500.262,76.624A299.248,299.248,0,0,1,600,300c0,165.685-134.315,300-300,300S0,465.685,0,300A299.254,299.254,0,0,1,100.078,76.32"/>
-				<path class="cls-2" d="M215.147,85L300,0.147,384.853,85"/>
-			</svg>
-			<span app-car-wind-speed="ir.WindVel" class="wind-value"></span>
-		</li>
-		<li ng-if="showWeatherSOF" class="temps">
-			<div>
-				<i class="icon-track-temp"></i>
-				<div>
-					<span app-car-track-temp></span>
-				</div>
-			</div>
-			<div ng-if="ir.SessionInfo.Sessions && ir.SessionInfo.Sessions[ir.SessionInfo.Sessions.length-1].SessionType == 'Race' && !ir.WeekendInfo.TeamRacing">
-				<i class="icon-sof"></i>
-				<div>
-					<span app-car-sof></span>
-				</div>
-			</div>
-		</li>
-	</ul>
-</div>
-
-<div ng-controller="TyresCtrl" class="tyres">
-
-	<div class="item">
-		<div class="temp">
-			<div class="row">
-				<span app-tyres-temp="ir.LFtempL"></span>
-				<span app-tyres-temp="ir.LFtempM"></span>
-				<span app-tyres-temp="ir.LFtempR"></span>
-			</div>
-			<div class="row bars">
-				<span app-tyres-temp-bar="ir.LFtempL"></span>
-				<span app-tyres-temp-bar="ir.LFtempM"></span>
-				<span app-tyres-temp-bar="ir.LFtempR"></span>
-			</div>
-		</div>
-		<div class="pres">
-			<span app-tyres-pres="ir.LFpressure"></span>
-		</div>
-	</div>
-
-	<div class="item">
-		<div class="temp">
-			<div class="row">
-				<span app-tyres-temp="ir.RFtempL"></span>
-				<span app-tyres-temp="ir.RFtempM"></span>
-				<span app-tyres-temp="ir.RFtempR"></span>
-			</div>
-			<div class="row bars">
-				<span app-tyres-temp-bar="ir.RFtempL"></span>
-				<span app-tyres-temp-bar="ir.RFtempM"></span>
-				<span app-tyres-temp-bar="ir.RFtempR"></span>
-			</div>
-		</div>
-		<div class="pres">
-			<span app-tyres-pres="ir.RFpressure"></span>
-		</div>
-	</div>
-
-	<br>
-
-	<div class="item">
-		<div class="temp">
-			<div class="row">
-				<span app-tyres-temp="ir.LRtempL"></span>
-				<span app-tyres-temp="ir.LRtempM"></span>
-				<span app-tyres-temp="ir.LRtempR"></span>
-			</div>
-			<div class="row bars">
-				<span app-tyres-temp-bar="ir.LRtempL"></span>
-				<span app-tyres-temp-bar="ir.LRtempM"></span>
-				<span app-tyres-temp-bar="ir.LRtempR"></span>
-			</div>
-		</div>
-		<div class="pres">
-			<span app-tyres-pres="ir.LRpressure"></span>
-		</div>
-	</div>
-
-	<div class="item">
-		<div class="temp">
-			<div class="row">
-				<span app-tyres-temp="ir.RRtempL"></span>
-				<span app-tyres-temp="ir.RRtempM"></span>
-				<span app-tyres-temp="ir.RRtempR"></span>
-			</div>
-			<div class="row bars">
-				<span app-tyres-temp-bar="ir.RRtempL"></span>
-				<span app-tyres-temp-bar="ir.RRtempM"></span>
-				<span app-tyres-temp-bar="ir.RRtempR"></span>
-			</div>
-		</div>
-		<div class="pres">
-			<span app-tyres-pres="ir.RRpressure"></span>
-		</div>
-	</div>
-
-</div>
-
 </body>
 </html>

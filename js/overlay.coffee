@@ -538,10 +538,10 @@ app.directive 'appStandingsGap', (iRData) ->
             firstPosition = standings[0]
             position = scope.i
 
-            element.toggleClass 'ng-hide', isRace and firstPosition.LapsComplete == 0
+            #element.toggleClass 'ng-hide', isRace and firstPosition.LapsComplete == 0
 
             if firstPosition.CarIdx == carIdx
-                element.text if isRace then firstPosition.LapsComplete + ' Laps' else timeFormat firstPosition.FastestTime,3
+                element.text if isRace then 'Interval' else timeFormat firstPosition.FastestTime,3
                 return
 
             if isRace
@@ -554,21 +554,21 @@ app.directive 'appStandingsGap', (iRData) ->
                 if gap >= 0 and position.LapsComplete
                     if diffLaps <= 0 or \
                             (diffLaps == 1 and (firstPosition.LastTime == -1 or gap < firstPosition.LastTime))
-                        element.text timeFormat gap, 1
+                        element.text "+" + timeFormat gap, 3
                     else if ir.SessionState < 5 and diffLaps > 0 and firstPosition.LastTime != -1 and \
                             Math.ceil(gap / firstPosition.LastTime) == diffLaps
-                        element.text "#{diffLaps - 1}L"
+                        element.text "+" + "#{diffLaps - 1}L"
                     else if diffLaps > 0
-                        element.text "#{diffLaps}L"
+                        element.text "+" + "#{diffLaps}L"
                 else if diffLaps > 1
-                    element.text "#{diffLaps}L"
+                    element.text "+" + "#{diffLaps}L"
                 else
-                    element.text ''
+                    element.text 'Interval'
             else
                 if gap >= 0
                     element.text '+' + timeFormat gap, 3
                 else
-                    element.text ''
+                    element.text 'Interval'
 
         scope.$watch 'ir.SessionInfo', updateStandingsGap
         scope.$watch 'ir.SessionNum', updateStandingsGap
@@ -620,12 +620,12 @@ app.directive 'appStandingsInt', (iRData) ->
                 else if diffLaps > 1
                     element.text "#{diffLaps}L"
                 else
-                    element.text ''
+                    element.text 'Interval'
             else
                 if interval >= 0
                     element.text timeFormat interval, 3
                 else
-                    element.text ''
+                    element.text 'Interval'
 
         scope.$watch 'ir.SessionInfo', updateStandingsInt
         scope.$watch 'ir.SessionNum', updateStandingsInt

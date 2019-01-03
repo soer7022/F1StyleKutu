@@ -57,7 +57,7 @@ html, body {
 // STANDINGS
 
 @standings-bg-color: @default-bg-color;
-@standings-bg-opacity: 60%;
+@standings-bg-opacity: 40%;
 @standings-bg: fade(@default-bg-color, @standings-bg-opacity);
 @standings-bg-opacity-2: 75%;
 
@@ -125,6 +125,7 @@ html, body {
   }
 
   &.current {
+    color: lightgreen;
   }
 
   > .position, > .gain, > .class-position, > .car-number, > .gap-time, > .int-time, > .lap-time {
@@ -149,6 +150,10 @@ html, body {
     }
   }
 
+  &.divider > td {
+    opacity: 0;
+  }
+
   > .position {
     text-align: center;
     color: black;
@@ -157,6 +162,7 @@ html, body {
     padding: 5px 5px;
     padding-right: 12px;
     background: black;
+    min-width: 35px;
     &:after {
       content: '';
       position: absolute;
