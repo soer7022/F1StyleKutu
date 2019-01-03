@@ -541,7 +541,7 @@ app.directive 'appStandingsGap', (iRData) ->
             element.toggleClass 'ng-hide', isRace and firstPosition.LapsComplete == 0
 
             if firstPosition.CarIdx == carIdx
-                element.text if isRace then 'Laps' else timeFormat firstPosition.FastestTime,3
+                element.text if isRace then firstPosition.LapsComplete + ' Laps' else timeFormat firstPosition.FastestTime,3
                 return
 
             if isRace
